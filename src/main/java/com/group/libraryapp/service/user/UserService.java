@@ -4,15 +4,15 @@ import com.group.libraryapp.dto.user.UserResponse;
 import com.group.libraryapp.dto.user.request.UserCreateReq;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.repository.user.UserRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserService(JdbcTemplate jdbcTemplate){
-        userRepository = new UserRepository(jdbcTemplate);
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
     }
     public void saveUser(UserCreateReq req){
         userRepository.saveUser(req.getName(), req.getAge());
